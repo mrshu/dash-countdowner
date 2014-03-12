@@ -1,6 +1,3 @@
-/*
-*/
-
 (function( $ ){
 
     function incrementer(ct, increment) {
@@ -10,8 +7,8 @@
     function pad2(number) {
          return (number < 10 ? '0' : '') + number;
     }
-    
-    function formatMilliseconds(millis) {
+
+    function defaultFormatMilliseconds(millis) {
         var x, seconds, minutes, hours;
         x = millis / 1000;
         seconds = Math.floor(x % 60);
@@ -23,17 +20,33 @@
         // days = Math.floor(x);
         return [pad2(hours), pad2(minutes), pad2(seconds)].join(':');
     }
-    
+
+    //NOTE: This is a the 'lazy func def' pattern described at http://michaux.ca/articles/lazy-function-definition-pattern
+    function formatMilliseconds(millis, data) {
+        // Use jintervals if available, else default formatter
+        var formatter;
+        if (typeof jintervals == 'function') {
+            formatter = function(millis, data){return jintervals(millis/1000, data.format);};
+        } else {
+            formatter = defaultFormatMilliseconds;
+        }
+        formatMilliseconds = function(millis, data) {
+            return formatter(millis, data);
+        };
+        return formatMilliseconds(millis, data);
+    }
+
     var methods = {
         
         init: function(options) {
-            var settings = {
-                updateInterval: 1000, 
-                startTime: 0, 
+            var defaults = {
+                updateInterval: 1000,
+                startTime: 0,
+                format: '{HH}:{MM}:{SS}',
                 formatter: formatMilliseconds
             };
             
-            if (options) { $.extend(settings, options); }
+            // if (options) { $.extend(settings, options); }
             
             return this.each(function() {
                 var $this = $(this),
@@ -42,7 +55,9 @@
                 // If the plugin hasn't been initialized yet
                 if (!data) {
                     // Setup the stopwatch data
+                    var settings = $.extend({}, defaults, options);
                     data = settings;
+                    data.active = false;
                     data.target = $this;
                     data.elapsed = settings.startTime;
                     // create counter
@@ -65,7 +80,7 @@
                     data = $this.data('stopwatch');
                 // Mark as active
                 data.active = true;
-                data.timerID = setInterval(data.tick_function, data.updateInterval)
+                data.timerID = setInterval(data.tick_function, data.updateInterval);
                 $this.data('stopwatch', data);
             });
         },
@@ -84,14 +99,20 @@
             return this.each(function(){
                 var $this = $(this),
                     data = $this.data('stopwatch');
-                $this.stopwatch('stop').unbind('.stopwatch').removeData('stopwatch');                
-            })
+                $this.stopwatch('stop').unbind('.stopwatch').removeData('stopwatch');
+            });
         },
         
         render: function() {
             var $this = $(this),
                 data = $this.data('stopwatch');
-            $this.html(data.formatter(data.elapsed));
+            $this.html(data.formatter(data.elapsed, data));
+        },
+
+        getTime: function() {
+            var $this = $(this),
+                data = $this.data('stopwatch');
+            return data.elapsed;
         },
         
         toggle: function() {
@@ -104,7 +125,7 @@
                     $this.stopwatch('start');
                 }
             });
-        }, 
+        },
         
         reset: function() {
             return this.each(function() {
@@ -126,7 +147,7 @@
             return methods.init.apply(this, arguments);
         } else {
             $.error( 'Method ' +  method + ' does not exist on jQuery.stopwatch' );
-        } 
+        }
     };
 
 })( jQuery );
