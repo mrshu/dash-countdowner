@@ -1,7 +1,4 @@
-@font-face {
-	font-family: "digital-7";
-  src: url(digital-7.ttf);
-}
+@import url(http://fonts.googleapis.com/css?family=Iceland:400,700);
     
 body {
   background-color: #000;
@@ -25,10 +22,11 @@ body {
 
 .time{
   font-size: 22em;
-  font-family: "digital-7";
+  font-family: "Iceland";
   display: table-cell;
   text-align: center;
   vertical-align: middle;
+  font-width: bold;
   
   color: #ddd;
 }

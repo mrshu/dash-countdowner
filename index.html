@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/style.css"/>
     <script>
         var cd = new CountDowner({element: "#clock"});
-        var realclock = new CountDowner({element: "#realclock", interval: 50, time: new Date().getTime()});
+        var realclock = new CountDowner({element: "#realclock", interval: 50, time: new Date().getTime() - new Date().getTimezoneOffset()*60*1000});
+        console.log(new Date());
         $(document).ready(function() {
             cd.start();
             realclock.start();
