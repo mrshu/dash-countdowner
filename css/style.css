@@ -8,9 +8,9 @@ body {
 }
 
 #countdown {
-  padding-top: 5%;
+  padding-top: 3%;
   height: 40%;
-  padding-bottom: 5%;
+  padding-bottom: 4%;
   display: table;
   width: 100%;
 }
@@ -32,8 +32,9 @@ body {
 }
 
 #realclock {
-  font-size: 3em;
+  font-size: 5em;
   color: #4A4A4A;
+  font-weight: bold;
 
   display: table-cell;
   text-align: center;
@@ -44,4 +45,5 @@ body {
   text-align: center;
   font-size: 5em;
   font-family: Verdana;
+  font-weight: bold;
 }
