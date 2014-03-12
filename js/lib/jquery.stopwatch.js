@@ -80,7 +80,7 @@
                     data = $this.data('stopwatch');
                 // Mark as active
                 data.active = true;
-                data.timerID = setInterval(data.tick_function, data.updateInterval);
+                data.timerID = setInterval(data.tick_function, Math.abs(data.updateInterval));
                 $this.data('stopwatch', data);
             });
         },
