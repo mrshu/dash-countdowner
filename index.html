@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title> Robot - rescue B scoreTracker </title>
+    <meta http-equiv="Content-Language" content="en-EN">
+
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/jquery.stopwatch.js"></script>
+    <script src="js/countdowner.js"></script>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script>
+        var cd = new CountDowner();
+        $(document).ready(function() {
+            cd.start();
+        });
+  	</script>
+
+</head>
+<body>
+  <div id="time">
+    <div id="realclock">00:00:00</div>
+  </div>
+
+  <div id="countdown">
+    <div id="clock" class="time">00:00:00</div>
+  </div>
+  <div id="text">
+    Some Lorem Ipsum text .....
+  </div>
+</body>
+</html>

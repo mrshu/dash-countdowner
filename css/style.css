@@ -1,0 +1,49 @@
+@font-face {
+	font-family: "digital-7";
+  src: url(digital-7.ttf);
+}
+    
+body {
+  background-color: #000;
+  color: #999;
+	margin: 0;
+  font-family: "Trebuchet MS",Helvetica,Jamrul,sans-serif;
+}
+
+#countdown {
+  padding-top: 5%;
+  height: 40%;
+  padding-bottom: 5%;
+  display: table;
+  width: 100%;
+}
+
+#time {
+  display: table;
+  width: 100%;
+}
+
+.time{
+  font-size: 22em;
+  font-family: "digital-7";
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  
+  color: #ddd;
+}
+
+#realclock {
+  font-size: 3em;
+  color: #4A4A4A;
+
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#text {
+  text-align: center;
+  font-size: 5em;
+  font-family: Verdana;
+}
