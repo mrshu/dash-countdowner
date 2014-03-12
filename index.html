@@ -8,12 +8,25 @@
     <script src="js/countdowner.js"></script>
     <link rel="stylesheet" href="css/style.css"/>
     <script>
-        var cd = new CountDowner({element: "#clock"});
-        var realclock = new CountDowner({element: "#realclock", interval: 50, time: new Date().getTime() - new Date().getTimezoneOffset()*60*1000});
-        console.log(new Date());
+        function getParameterByName(name) {
+          var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+          return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+        }
+
+        var cd = new CountDowner({
+              element: "#clock",
+              time: (parseInt(getParameterByName('time'))*1000) || (2*3600*1000)
+            });
+        var realclock = new CountDowner({
+              element: "#realclock",
+              interval: 50,
+              time: new Date().getTime() - new Date().getTimezoneOffset()*60*1000,
+            });
         $(document).ready(function() {
             cd.start();
             realclock.start();
+
+            $("#text").text(getParameterByName('text') || "Some lorem ipsum ...");
         });
   	</script>
 
