@@ -8,9 +8,11 @@
     <script src="js/countdowner.js"></script>
     <link rel="stylesheet" href="css/style.css"/>
     <script>
-        var cd = new CountDowner({element: "#time"});
+        var cd = new CountDowner({element: "#clock"});
+        var realclock = new CountDowner({element: "#realclock", interval: 50, time: new Date().getTime()});
         $(document).ready(function() {
             cd.start();
+            realclock.start();
         });
   	</script>
 
