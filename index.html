@@ -15,7 +15,13 @@
 
         var cd = new CountDowner({
               element: "#clock",
-              time: (parseInt(getParameterByName('time'))*1000) || (2*3600*1000)
+              time: (parseInt(getParameterByName('time'))*1000) || (2*3600*1000),
+              callback: function() {
+                $("#countdown").html(
+                  $("<div>").addClass('centered').addClass('big').addClass('red')
+                            .text(getParameterByName('finishtext') || "Done!")
+                );
+              }
             });
         var realclock = new CountDowner({
               element: "#realclock",

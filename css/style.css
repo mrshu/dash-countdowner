@@ -31,6 +31,20 @@ body {
   color: #ddd;
 }
 
+.centered {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.big {
+  font-size: 20em;
+}
+
+.red {
+  color: red;
+}
+
 #realclock {
   font-size: 5em;
   color: #4A4A4A;
